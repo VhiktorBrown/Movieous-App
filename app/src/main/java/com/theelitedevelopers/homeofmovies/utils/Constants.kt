@@ -13,7 +13,7 @@ package com.theelitedevelopers.homeofmovies.utils
  */
 object Constants {
 
-    const val PRODUCT_DETAIL = "product_detail"
+    const val MOVIE_DETAIL = "movie_detail"
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/"
     const val API_KEY = "ded4471097e355628f443ca6b535b649"
