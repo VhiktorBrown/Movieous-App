@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,6 +48,9 @@ dependencies {
     //Ssp and Sdp(For different screen sizes)
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    //Custom Rounded imageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Dagger-Hilt (Dependency Injection)
     implementation 'com.google.dagger:hilt-android:2.38.1'

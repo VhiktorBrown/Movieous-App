@@ -3,12 +3,264 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryDark"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <de.hdodenhof.circleimageview.CircleImageView
+           android:id="@+id/profile_image"
+           android:layout_width="@dimen/_40sdp"
+           android:layout_height="@dimen/_40sdp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_marginStart="@dimen/_20sdp"
+           android:layout_marginTop="@dimen/_10sdp"
+           android:src="@drawable/ic_person" />
+
+       <TextView
+           android:id="@+id/hello_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Hello, Victor"
+           app:layout_constraintTop_toTopOf="@+id/profile_image"
+           app:layout_constraintStart_toEndOf="@+id/profile_image"
+           android:textColor="@color/textColor"
+           android:layout_marginTop="@dimen/_5sdp"
+           android:layout_marginStart="@dimen/_5sdp"
+           android:fontFamily="@font/poppins_regular" />
+
+       <TextView
+           android:id="@+id/info"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Let\'s find your favorite movie."
+           app:layout_constraintStart_toEndOf="@+id/profile_image"
+           app:layout_constraintTop_toBottomOf="@+id/hello_name"
+           android:textColor="@color/textColorSecondary"
+           android:layout_marginStart="@dimen/_5sdp"
+           android:fontFamily="@font/poppins_regular" />
+
+       <ImageView
+           android:id="@+id/favorites"
+           android:layout_width="@dimen/_30sdp"
+           android:layout_height="@dimen/_30sdp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="@+id/profile_image"
+           app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+           android:layout_marginEnd="@dimen/_20sdp"
+           android:src="@drawable/ic_favorite"
+           android:padding="@dimen/_8sdp"
+           android:background="@drawable/custom_view"/>
+
+       <EditText
+           android:id="@+id/search_editText"
+           android:layout_width="0dp"
+           android:layout_height="@dimen/_35sdp"
+           app:layout_constraintStart_toStartOf="@+id/profile_image"
+           app:layout_constraintEnd_toEndOf="@+id/favorites"
+           app:layout_constraintTop_toBottomOf="@+id/profile_image"
+           android:layout_marginTop="@dimen/_10sdp"
+           android:background="@drawable/edit_background"
+           android:padding="@dimen/_10sdp"
+           android:hint="Search for your favorite movies"
+           android:textColorHint="@color/textColorSecondary"
+           android:fontFamily="@font/poppins_regular"
+           android:textSize="@dimen/_10ssp"
+           android:textAlignment="gravity"
+           android:gravity="center_vertical"
+           android:drawableStart="@drawable/ic_search"
+           android:drawableTint="@color/textColorSecondary"
+           android:drawablePadding="@dimen/_10sdp"
+           android:autofillHints="Search for anything" />
+
+       <androidx.core.widget.NestedScrollView
+           android:id="@+id/main_scroll_view"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:scrollbars="none"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/search_editText"
+           app:layout_constraintBottom_toBottomOf="parent">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <androidx.viewpager.widget.ViewPager
+                   android:id="@+id/view_pager"
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/_140sdp"
+                   android:layout_marginTop="@dimen/_20sdp"
+                   android:backgroundTint="@android:color/transparent"
+                   android:background="@android:color/transparent"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:layout_marginEnd="@dimen/_10sdp"
+                   android:layout_marginBottom="@dimen/_10sdp"
+                   android:visibility="visible" />
+
+               <LinearLayout
+                   android:id="@+id/dotsLayout"
+                   android:orientation="horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_margin="@dimen/_10sdp"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/view_pager"
+                   android:gravity="center_horizontal|center_vertical" />
+
+               <TextView
+                   android:id="@+id/popular_text"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/dotsLayout"
+                   android:text="Popular"
+                   android:fontFamily="@font/poppins_semi_bold"
+                   android:textColor="@color/textColor"
+                   android:textSize="@dimen/_16ssp"
+                   android:textStyle="bold"
+                   android:visibility="visible"
+                   android:layout_marginStart="@dimen/_20sdp"
+                   android:layout_marginTop="@dimen/_10sdp" />
+
+               <TextView
+                   android:id="@+id/view_all"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="See All"
+                   android:textAlignment="gravity"
+                   android:gravity="center_vertical"
+                   android:textColor="@color/primary"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   app:layout_constraintTop_toTopOf="@+id/popular_text"
+                   app:layout_constraintBottom_toBottomOf="@+id/popular_text"
+                   android:foreground="?selectableItemBackgroundBorderless"
+                   android:clickable="true"
+                   android:fontFamily="@font/poppins_regular"
+                   android:textSize="@dimen/_12ssp"
+                   android:focusable="true" />
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/popular_recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintTop_toBottomOf="@+id/popular_text"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:scrollbars="none"
+                   android:padding="@dimen/_10sdp"
+                   android:visibility="visible"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   android:layout_marginStart="@dimen/_20sdp" />
+
+               <TextView
+                   android:id="@+id/upcoming_text"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/popular_recycler_view"
+                   android:text="Upcoming"
+                   android:fontFamily="@font/poppins_semi_bold"
+                   android:textColor="@color/textColor"
+                   android:textSize="@dimen/_16ssp"
+                   android:textStyle="bold"
+                   android:visibility="visible"
+                   android:layout_marginStart="@dimen/_20sdp"
+                   android:layout_marginTop="@dimen/_10sdp" />
+
+               <TextView
+                   android:id="@+id/view_all_upcoming"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="See All"
+                   android:textAlignment="gravity"
+                   android:gravity="center_vertical"
+                   android:textColor="@color/primary"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   app:layout_constraintTop_toTopOf="@+id/upcoming_text"
+                   app:layout_constraintBottom_toBottomOf="@+id/upcoming_text"
+                   android:foreground="?selectableItemBackgroundBorderless"
+                   android:clickable="true"
+                   android:fontFamily="@font/poppins_regular"
+                   android:textSize="@dimen/_12ssp"
+                   android:focusable="true" />
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/upcoming_recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintTop_toBottomOf="@+id/upcoming_text"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:scrollbars="none"
+                   android:padding="@dimen/_10sdp"
+                   android:visibility="visible"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   android:layout_marginStart="@dimen/_20sdp" />
+
+               <TextView
+                   android:id="@+id/top_rated_text"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/upcoming_recycler_view"
+                   android:text="Top Rated"
+                   android:fontFamily="@font/poppins_semi_bold"
+                   android:textColor="@color/textColor"
+                   android:textSize="@dimen/_16ssp"
+                   android:textStyle="bold"
+                   android:visibility="visible"
+                   android:layout_marginStart="@dimen/_20sdp"
+                   android:layout_marginTop="@dimen/_10sdp" />
+
+               <TextView
+                   android:id="@+id/view_all_top_rated"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="See All"
+                   android:textAlignment="gravity"
+                   android:gravity="center_vertical"
+                   android:textColor="@color/primary"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   app:layout_constraintTop_toTopOf="@+id/top_rated_text"
+                   app:layout_constraintBottom_toBottomOf="@+id/top_rated_text"
+                   android:foreground="?selectableItemBackgroundBorderless"
+                   android:clickable="true"
+                   android:fontFamily="@font/poppins_regular"
+                   android:textSize="@dimen/_12ssp"
+                   android:focusable="true" />
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/top_rated_recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintTop_toBottomOf="@+id/top_rated_text"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:scrollbars="none"
+                   android:padding="@dimen/_10sdp"
+                   android:visibility="visible"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   android:layout_marginStart="@dimen/_20sdp"
+                   android:layout_marginBottom="@dimen/_20sdp"/>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+       </androidx.core.widget.NestedScrollView>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

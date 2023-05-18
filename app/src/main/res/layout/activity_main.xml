@@ -22,7 +22,7 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="@color/primaryDark"
+        android:background="@color/secondary"
         app:itemIconTint="@color/color_state_change"
         app:itemTextColor="@color/color_state_change"
         app:menu="@menu/menu_main"
