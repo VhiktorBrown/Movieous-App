@@ -46,12 +46,28 @@
                 android:text="The Survival of the Fittest Trailer"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_image"
                 android:textAlignment="gravity"
                 android:gravity="start"
                 android:textSize="@dimen/_10ssp" />
 
+            <TextView
+                android:id="@+id/movie_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/movie_title"
+                app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                android:text="7.6"
+                android:textColor="@color/textColor"
+                android:drawablePadding="@dimen/_5sdp"
+                android:textAlignment="gravity"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textSize="@dimen/_10ssp"
+                app:drawableStartCompat="@drawable/ic_rating" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

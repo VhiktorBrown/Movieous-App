@@ -20,16 +20,10 @@ import com.squareup.picasso.Picasso
 import com.theelitedevelopers.homeofmovies.R
 import com.theelitedevelopers.homeofmovies.domain.models.Movie
 import com.theelitedevelopers.homeofmovies.utils.Constants
-class SliderAdapter: PagerAdapter() {
-    var context: Context? = null
+class SliderAdapter(var context: Context?, var movieArrayList: List<Movie>?): PagerAdapter() {
     var inflater: LayoutInflater? = null
     var view: View? = null
-    var movieArrayList: List<Movie>? = null
 
-    fun SliderAdapter(context: Context?, movieArrayList: List<Movie>?) {
-        this.context = context
-        this.movieArrayList = movieArrayList
-    }
     override fun getCount(): Int {
         return movieArrayList!!.size
     }

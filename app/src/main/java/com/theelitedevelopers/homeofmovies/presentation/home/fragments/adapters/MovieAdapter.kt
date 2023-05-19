@@ -34,6 +34,7 @@ class MovieAdapter(var context : Context, var movieList : List<Movie>
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         //set and display details of each movie
         holder.binding.movieTitle.text = movieList[position].title
+        holder.binding.movieRating.text = movieList[position].rating.toString()
 
         Picasso.get()
             .load(Constants.BASE_URL_IMAGE+movieList[position].image)
