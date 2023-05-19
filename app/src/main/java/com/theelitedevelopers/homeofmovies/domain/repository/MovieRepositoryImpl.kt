@@ -25,4 +25,20 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun fetchAllMovies(): GetMoviesResponse {
         return apiInterface.fetchAllMovies()
     }
+
+    override suspend fun fetchPopularMovies(): GetMoviesResponse {
+        return apiInterface.fetchPopularMovies()
+    }
+
+    override suspend fun fetchUpcomingMovies(): GetMoviesResponse {
+        return apiInterface.fetchUpcomingMovies()
+    }
+
+    override suspend fun fetchTopRatedMovies(): GetMoviesResponse {
+        return apiInterface.fetchTopRatedMovies()
+    }
+
+    override suspend fun fetchRecommendations(movieId: String): GetMoviesResponse {
+        return apiInterface.fetchRecommendations(movieId)
+    }
 }

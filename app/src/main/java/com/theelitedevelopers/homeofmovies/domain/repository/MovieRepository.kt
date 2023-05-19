@@ -18,6 +18,6 @@ interface MovieRepository {
     //Top Rated
     suspend fun fetchTopRatedMovies() : GetMoviesResponse
     //Recommendations
-    suspend fun fetchRecommendations() : GetMoviesResponse
+    suspend fun fetchRecommendations(movieId: String) : GetMoviesResponse
 
 }
