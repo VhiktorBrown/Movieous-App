@@ -19,4 +19,13 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/textColor</item>
     </style>
+
+    <style name="Theme.HomeOfMovies.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.HomeOfMovies.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.HomeOfMovies.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

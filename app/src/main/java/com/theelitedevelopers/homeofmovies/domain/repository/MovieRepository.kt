@@ -1,6 +1,8 @@
 package com.theelitedevelopers.homeofmovies.domain.repository
 
+import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetCastsResponse
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetMoviesResponse
+import com.theelitedevelopers.homeofmovies.domain.models.Movie
 import retrofit2.Response
 
 /**
@@ -19,6 +21,10 @@ interface MovieRepository {
     //Top Rated
     suspend fun fetchTopRatedMovies() : Response<GetMoviesResponse>
     //Recommendations
-    suspend fun fetchRecommendations(movieId: String) : Response<GetMoviesResponse>
+    suspend fun fetchRecommendations(movieId: Int) : Response<GetMoviesResponse>
+    //Casts
+    suspend fun fetchCasts(movieId:Int) : Response<GetCastsResponse>
+    //Get details of Movie
+    suspend fun fetchMovieDetails(movieId: Int) : Response<Movie>
 
 }

@@ -32,6 +32,31 @@ class HomeViewModel @Inject constructor (
     private val _topRatedMoviesLiveData = MutableLiveData<Resource<GetMoviesResponse>>()
     val topRatedLiveData: LiveData<Resource<GetMoviesResponse>> = _topRatedMoviesLiveData
 
+    private val _movieRecommendations = MutableLiveData<Resource<GetMoviesResponse>>()
+    val movieRecommendations: LiveData<Resource<GetMoviesResponse>> = _movieRecommendations
+
+
+    fun getAllMovies() = viewModelScope.launch(Dispatchers.IO) {
+        _allMoviesLiveData.postValue(Resource.Loading())
+        if (networkObserver.value == true) {
+            try {
+                val allMoviesResponse = repository.fetchAllMovies()
+                if (allMoviesResponse.isSuccessful) {
+                    allMoviesResponse.body()?.let { movieResponse ->
+                        _allMoviesLiveData.postValue(Resource.Success(movieResponse))
+                    }
+                }else  _allMoviesLiveData.postValue(
+                    Resource.Error(allMoviesResponse.errorBody().toString())
+                )
+            } catch (e: Exception) {
+                _allMoviesLiveData.postValue(Resource.Error(e.localizedMessage))
+            }
+        }else {
+            _allMoviesLiveData.postValue(Resource.Error(
+                "internet not available, check connection"
+            ))
+        }
+    }
 
     fun getTopRatedMovies() = viewModelScope.launch(Dispatchers.IO) {
         _topRatedMoviesLiveData.postValue(Resource.Loading())
@@ -56,5 +81,73 @@ class HomeViewModel @Inject constructor (
         }
     }
 
+
+    fun getUpComingMovies() = viewModelScope.launch(Dispatchers.IO) {
+        _upcomingMoviesLiveData.postValue(Resource.Loading())
+        if (networkObserver.value == true) {
+            try {
+                val upcomingMoviesResponse = repository.fetchUpcomingMovies()
+                if (upcomingMoviesResponse.isSuccessful) {
+                    upcomingMoviesResponse.body()?.let { movieResponse ->
+                        _upcomingMoviesLiveData.postValue(Resource.Success(movieResponse))
+                    }
+                }else  {
+                    _upcomingMoviesLiveData.postValue(Resource.Error("Ooops!! something happened," +
+                            " try again"))
+                }
+            } catch (e: Exception) {
+                _upcomingMoviesLiveData.postValue(Resource.Error(e.localizedMessage))
+            }
+        }else {
+            _upcomingMoviesLiveData.postValue(Resource.Error(
+                "internet not available, check connection"
+            ))
+        }
+    }
+
+    fun getPopularMovies() = viewModelScope.launch(Dispatchers.IO) {
+        _popularMoviesLiveData.postValue(Resource.Loading())
+        if (networkObserver.value == true) {
+            try {
+                val popularMoviesResponse = repository.fetchPopularMovies()
+                if (popularMoviesResponse.isSuccessful) {
+                    popularMoviesResponse.body()?.let { movieResponse ->
+                        _popularMoviesLiveData.postValue(Resource.Success(movieResponse))
+                    }
+                }else  _popularMoviesLiveData.postValue(
+                    Resource.Error(popularMoviesResponse.errorBody().toString())
+                )
+            } catch (e: Exception) {
+                _popularMoviesLiveData.postValue(Resource.Error(e.localizedMessage))
+            }
+        }else {
+            _popularMoviesLiveData.postValue(Resource.Error(
+                "internet not available, check connection"
+            ))
+        }
+    }
+
+
+    fun getRecommendations(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        _movieRecommendations.postValue(Resource.Loading())
+        if (networkObserver.value == true) {
+            try {
+                val recommendationsResponse = repository.fetchRecommendations(movieId)
+                if (recommendationsResponse.isSuccessful) {
+                    recommendationsResponse.body()?.let { movieResponse ->
+                        _movieRecommendations.postValue(Resource.Success(movieResponse))
+                    }
+                }else  _movieRecommendations.postValue(
+                    Resource.Error(recommendationsResponse.errorBody().toString())
+                )
+            } catch (e: Exception) {
+                _movieRecommendations.postValue(Resource.Error(e.localizedMessage))
+            }
+        }else {
+            _movieRecommendations.postValue(Resource.Error(
+                "internet not available, check connection"
+            ))
+        }
+    }
 
 }

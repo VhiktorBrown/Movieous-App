@@ -1,6 +1,8 @@
 package com.theelitedevelopers.homeofmovies.domain.repository
+import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetCastsResponse
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetMoviesResponse
 import com.theelitedevelopers.homeofmovies.data.remote.ApiInterface
+import com.theelitedevelopers.homeofmovies.domain.models.Movie
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -39,7 +41,15 @@ class MovieRepositoryImpl @Inject constructor(
         return apiInterface.fetchTopRatedMovies()
     }
 
-    override suspend fun fetchRecommendations(movieId: String): Response<GetMoviesResponse> {
+    override suspend fun fetchRecommendations(movieId: Int): Response<GetMoviesResponse> {
         return apiInterface.fetchRecommendations(movieId)
+    }
+
+    override suspend fun fetchCasts(movieId: Int): Response<GetCastsResponse> {
+        return apiInterface.fetchCasts(movieId)
+    }
+
+    override suspend fun fetchMovieDetails(movieId: Int): Response<Movie> {
+        return apiInterface.fetchMovieDetails(movieId)
     }
 }

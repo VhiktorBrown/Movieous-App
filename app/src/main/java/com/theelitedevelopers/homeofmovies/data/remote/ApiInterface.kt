@@ -1,6 +1,8 @@
 package com.theelitedevelopers.homeofmovies.data.remote
 
+import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetCastsResponse
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetMoviesResponse
+import com.theelitedevelopers.homeofmovies.domain.models.Movie
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
@@ -28,6 +30,18 @@ interface ApiInterface {
     //Fetch Recommendations for other movies based on a movie.
     @GET("movie/{movie_id}/recommendations?language=en-US&page=1")
     suspend fun fetchRecommendations(
-        @Path("{movie_id}") movieId: String?
+        @Path("{movie_id}") movieId: Int?
     ): Response<GetMoviesResponse>
+
+    //Fetch Casts for a movie.
+    @GET("movie/{movie_id}/credits?language=en-US")
+    suspend fun fetchCasts(
+        @Path("{movie_id}") movieId: Int?
+    ): Response<GetCastsResponse>
+
+    //Fetch Movie Details
+    @GET("movie/{movie_id}/?language=en-US")
+    suspend fun fetchMovieDetails(
+        @Path("{movie_id}") movieId: Int?
+    ): Response<Movie>
 }
