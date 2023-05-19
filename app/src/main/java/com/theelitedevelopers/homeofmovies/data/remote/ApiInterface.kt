@@ -11,28 +11,23 @@ interface ApiInterface {
 
     //fetch Movies from API
     @GET("discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc")
-    @Headers("accept: application/json")
-    suspend fun fetchAllMovies() : GetMoviesResponse
+    suspend fun fetchAllMovies() : Response<GetMoviesResponse>
 
     //fetch Popular Movies from API
     @GET("movie/popular?language=en-US&page=1")
-    @Headers("accept: application/json")
-    suspend fun fetchPopularMovies() : GetMoviesResponse
+    suspend fun fetchPopularMovies() : Response<GetMoviesResponse>
 
     //fetch Top Rated Movies from API
     @GET("movie/top_rated?language=en-US&page=1")
-    @Headers("accept: application/json")
-    suspend fun fetchTopRatedMovies() : GetMoviesResponse
+    suspend fun fetchTopRatedMovies() : Response<GetMoviesResponse>
 
     //fetch Upcoming Movies from API
     @GET("/movie/upcoming?language=en-US&page=1")
-    @Headers("accept: application/json")
-    suspend fun fetchUpcomingMovies() : GetMoviesResponse
+    suspend fun fetchUpcomingMovies() : Response<GetMoviesResponse>
 
     //Fetch Recommendations for other movies based on a movie.
     @GET("movie/{movie_id}/recommendations?language=en-US&page=1")
-    @Headers("accept: application/json")
     suspend fun fetchRecommendations(
         @Path("{movie_id}") movieId: String?
-    ): GetMoviesResponse
+    ): Response<GetMoviesResponse>
 }

@@ -1,6 +1,7 @@
 package com.theelitedevelopers.homeofmovies.domain.repository
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetMoviesResponse
 import com.theelitedevelopers.homeofmovies.data.remote.ApiInterface
+import retrofit2.Response
 import javax.inject.Inject
 
 /**
@@ -22,23 +23,23 @@ class MovieRepositoryImpl @Inject constructor(
     private val apiInterface: ApiInterface
 ) : MovieRepository{
 
-    override suspend fun fetchAllMovies(): GetMoviesResponse {
+    override suspend fun fetchAllMovies(): Response<GetMoviesResponse> {
         return apiInterface.fetchAllMovies()
     }
 
-    override suspend fun fetchPopularMovies(): GetMoviesResponse {
+    override suspend fun fetchPopularMovies(): Response<GetMoviesResponse> {
         return apiInterface.fetchPopularMovies()
     }
 
-    override suspend fun fetchUpcomingMovies(): GetMoviesResponse {
+    override suspend fun fetchUpcomingMovies(): Response<GetMoviesResponse> {
         return apiInterface.fetchUpcomingMovies()
     }
 
-    override suspend fun fetchTopRatedMovies(): GetMoviesResponse {
+    override suspend fun fetchTopRatedMovies(): Response<GetMoviesResponse> {
         return apiInterface.fetchTopRatedMovies()
     }
 
-    override suspend fun fetchRecommendations(movieId: String): GetMoviesResponse {
+    override suspend fun fetchRecommendations(movieId: String): Response<GetMoviesResponse> {
         return apiInterface.fetchRecommendations(movieId)
     }
 }
