@@ -10,7 +10,12 @@
         android:name="com.theelitedevelopers.homeofmovies.presentation.home.fragments.HomeFragment"
         android:label="Discover"
         tools:layout="@layout/fragment_home" >
-
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

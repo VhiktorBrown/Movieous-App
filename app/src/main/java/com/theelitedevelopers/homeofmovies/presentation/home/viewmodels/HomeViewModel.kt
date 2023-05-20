@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor (
     private val repository: MovieRepository,
-    private val networkManager: NetworkManager
+    networkManager: NetworkManager
 ) : ViewModel() {
     private val networkObserver = networkManager.observeConnectionStatus
 

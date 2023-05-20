@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.theelitedevelopers.homeofmovies.R
 
+
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(

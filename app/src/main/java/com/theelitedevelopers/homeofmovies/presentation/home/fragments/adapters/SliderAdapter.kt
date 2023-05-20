@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.squareup.picasso.Picasso
 import com.theelitedevelopers.homeofmovies.R
@@ -29,7 +30,7 @@ class SliderAdapter(var context: Context?, var movieArrayList: List<Movie>?): Pa
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view === `object` as RelativeLayout
+        return view === `object` as ConstraintLayout
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -60,6 +61,6 @@ class SliderAdapter(var context: Context?, var movieArrayList: List<Movie>?): Pa
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as RelativeLayout)
+        container.removeView(`object` as ConstraintLayout)
     }
 }

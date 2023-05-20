@@ -24,7 +24,7 @@ interface ApiInterface {
     suspend fun fetchTopRatedMovies() : Response<GetMoviesResponse>
 
     //fetch Upcoming Movies from API
-    @GET("/movie/upcoming?language=en-US&page=1")
+    @GET("movie/upcoming?language=en-US&page=1")
     suspend fun fetchUpcomingMovies() : Response<GetMoviesResponse>
 
     //Fetch Recommendations for other movies based on a movie.

@@ -8,8 +8,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.theelitedevelopers.homeofmovies.R
 import com.theelitedevelopers.homeofmovies.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.OkHttpClient
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var navController : NavController;
     private lateinit var binding : ActivityMainBinding

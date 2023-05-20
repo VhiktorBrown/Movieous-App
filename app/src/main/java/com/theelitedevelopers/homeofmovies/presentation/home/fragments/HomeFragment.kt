@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.snackbar.Snackbar
 import com.theelitedevelopers.homeofmovies.R
 import com.theelitedevelopers.homeofmovies.databinding.FragmentHomeBinding
+import com.theelitedevelopers.homeofmovies.domain.models.Movie
 import com.theelitedevelopers.homeofmovies.presentation.home.fragments.adapters.MovieAdapter
 import com.theelitedevelopers.homeofmovies.presentation.home.fragments.adapters.SliderAdapter
 import com.theelitedevelopers.homeofmovies.presentation.home.viewmodels.HomeViewModel
@@ -23,6 +24,10 @@ import com.theelitedevelopers.homeofmovies.utils.Constants
 import com.theelitedevelopers.homeofmovies.utils.Resource
 import com.theelitedevelopers.homeofmovies.utils.SpacesItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.NavOptions
+
+
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -31,6 +36,7 @@ class HomeFragment : Fragment() {
     private lateinit var popularAdapter: MovieAdapter
     private lateinit var upcomingAdapter: MovieAdapter
     private lateinit var topRatedAdapter: MovieAdapter
+    private var movieList: List<Movie>? = arrayListOf()
     var size = 0
     private lateinit var adapter: SliderAdapter
 
@@ -42,6 +48,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         viewModel.apply {
+            getAllMovies()
             getPopularMovies()
             getUpComingMovies()
             getTopRatedMovies()
@@ -54,8 +61,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews(){
+        binding.viewPager.addOnPageChangeListener(viewListener)
+
+        popularAdapter = MovieAdapter(requireActivity(), movieList)
+        upcomingAdapter = MovieAdapter(requireActivity(), movieList)
+        topRatedAdapter = MovieAdapter(requireActivity(), movieList)
+
         binding.searchEditText.setOnClickListener {
-            findNavController().navigate(R.id.searchFragment)
+            val navOptions = NavOptions.Builder().setPopUpTo(R.id.homeFragment, true).build()
+            findNavController().navigate(R.id.searchFragment, null, navOptions)
         }
 
         binding.popularRecyclerView.apply {
@@ -89,9 +103,8 @@ class HomeFragment : Fragment() {
                 is Resource.Success -> {
                     state.data?.let {
                         size = it.results.size
-                        //set up the Viewpager at the rop of the Homepage
-                        binding.viewPager.addOnPageChangeListener(viewListener)
-                        adapter = SliderAdapter(requireActivity(), it.results)
+                        //set up the Viewpager at the top of the Homepage
+                        adapter = SliderAdapter(requireActivity(), it.results.shuffled())
                         binding.viewPager.adapter = adapter
                     }
                 }
@@ -106,10 +119,11 @@ class HomeFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar(1)
                     state.data?.let {
-                        upcomingAdapter.setList(it.results)
+                        upcomingAdapter.setList(it.results.shuffled())
                     }
                 }
                 is Resource.Error -> {
+                    hideProgressBar(1)
                     Snackbar.make(binding.root, state.message!!, Snackbar.LENGTH_LONG).show()
                 }
                 is Resource.Loading -> showProgressBar(1)
@@ -121,10 +135,11 @@ class HomeFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar(2)
                     state.data?.let {
-                        topRatedAdapter.setList(it.results)
+                        topRatedAdapter.setList(it.results.shuffled())
                     }
                 }
                 is Resource.Error -> {
+                    hideProgressBar(2)
                     Snackbar.make(binding.root, state.message!!, Snackbar.LENGTH_LONG).show()
                 }
                 is Resource.Loading -> showProgressBar(2)
@@ -136,10 +151,11 @@ class HomeFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar(0)
                     state.data?.let {
-                        popularAdapter.setList(it.results)
+                        popularAdapter.setList(it.results.shuffled())
                     }
                 }
                 is Resource.Error -> {
+                    hideProgressBar(0)
                     Snackbar.make(binding.root, state.message!!, Snackbar.LENGTH_LONG).show()
                 }
                 is Resource.Loading -> showProgressBar(0)

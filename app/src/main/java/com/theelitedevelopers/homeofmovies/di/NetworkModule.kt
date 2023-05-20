@@ -1,12 +1,15 @@
 package com.theelitedevelopers.homeofmovies.di
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.theelitedevelopers.homeofmovies.data.remote.ApiInterface
 import com.theelitedevelopers.homeofmovies.utils.Constants
+import com.theelitedevelopers.homeofmovies.utils.NetworkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -71,4 +74,8 @@ object NetworkModule {
             .build()
             .create(ApiInterface::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideNetworkManager(@ApplicationContext context: Context) = NetworkManager(context)
 }

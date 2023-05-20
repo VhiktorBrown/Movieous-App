@@ -13,5 +13,5 @@ abstract class RepositoryModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindsProductRepository(productRepositoryImpl: MovieRepositoryImpl) : MovieRepository
+    abstract fun bindsMovieRepository(movieRepositoryImpl: MovieRepositoryImpl) : MovieRepository
 }

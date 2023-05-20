@@ -6,4 +6,5 @@
     android:layout_height="match_parent"
     tools:context=".presentation.details.MovieDetailsActivity">
 
+    <ImageVi
 </androidx.constraintlayout.widget.ConstraintLayout>

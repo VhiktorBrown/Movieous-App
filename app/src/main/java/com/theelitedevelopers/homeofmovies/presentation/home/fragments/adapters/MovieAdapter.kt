@@ -18,8 +18,10 @@ import com.theelitedevelopers.homeofmovies.utils.Constants
  * @author Victor
  */
 
-class MovieAdapter(var context : Context, var movieList : List<Movie>
+class MovieAdapter(var context : Context, var movieList : List<Movie>?
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    var size = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding : MovieItemBinding = MovieItemBinding.inflate(
@@ -33,11 +35,11 @@ class MovieAdapter(var context : Context, var movieList : List<Movie>
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         //set and display details of each movie
-        holder.binding.movieTitle.text = movieList[position].title
-        holder.binding.movieRating.text = movieList[position].rating.toString()
+        holder.binding.movieTitle.text = movieList!![position].title
+        holder.binding.movieRating.text = movieList!![position].rating.toString()
 
         Picasso.get()
-            .load(Constants.BASE_URL_IMAGE+movieList[position].image)
+            .load(Constants.BASE_URL_IMAGE+movieList!![position].image)
             .placeholder(R.drawable.image_12)
             .into(holder.binding.movieImage)
 
@@ -55,7 +57,11 @@ class MovieAdapter(var context : Context, var movieList : List<Movie>
     }
 
     override fun getItemCount(): Int {
-        return movieList.size
+        return if(movieList!!.isNotEmpty()){
+            movieList!!.size
+        }else {
+            size
+        }
     }
 
     class MovieViewHolder(var binding : MovieItemBinding) : RecyclerView.ViewHolder(binding.root)
