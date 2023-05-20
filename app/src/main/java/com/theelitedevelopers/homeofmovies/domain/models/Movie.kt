@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movie(
-    val id: Int?,
+    val id: Int,
     val homepage: String,
     val genres: List<Genre>,
     @SerializedName("original_language")
@@ -14,7 +14,7 @@ data class Movie(
     @SerializedName("title")
     val title: String,
     @SerializedName("overview")
-    val description: String?,
+    val description: String,
     val popularity: Double?,
     @SerializedName("poster_path")
     val image: String?,
@@ -24,7 +24,7 @@ data class Movie(
     val rating: Double?,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    val revenue: Int,
+    val revenue: Float,
     val status: String,
     val tagline: String,
     val runtime: Int,

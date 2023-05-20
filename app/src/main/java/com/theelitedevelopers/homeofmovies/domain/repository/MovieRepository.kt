@@ -21,10 +21,10 @@ interface MovieRepository {
     //Top Rated
     suspend fun fetchTopRatedMovies() : Response<GetMoviesResponse>
     //Recommendations
-    suspend fun fetchRecommendations(movieId: Int) : Response<GetMoviesResponse>
+    suspend fun fetchRecommendations(movieId: String) : Response<GetMoviesResponse>
     //Casts
-    suspend fun fetchCasts(movieId:Int) : Response<GetCastsResponse>
+    suspend fun fetchCasts(movieId:String) : Response<GetCastsResponse>
     //Get details of Movie
-    suspend fun fetchMovieDetails(movieId: Int) : Response<Movie>
+    suspend fun fetchMovieDetails(movieId: String) : Response<Movie>
 
 }

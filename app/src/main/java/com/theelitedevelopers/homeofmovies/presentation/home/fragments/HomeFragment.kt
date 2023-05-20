@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -101,8 +100,8 @@ class HomeFragment : Fragment() {
         viewModel.allMoviesLiveData.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is Resource.Success -> {
-                    state.data?.let {
-                        size = it.results.size
+                    state.data.let {
+                        size = it!!.results.size
                         //set up the Viewpager at the top of the Homepage
                         adapter = SliderAdapter(requireActivity(), it.results.shuffled())
                         binding.viewPager.adapter = adapter
@@ -118,8 +117,10 @@ class HomeFragment : Fragment() {
             when(state) {
                 is Resource.Success -> {
                     hideProgressBar(1)
-                    state.data?.let {
-                        upcomingAdapter.setList(it.results.shuffled())
+                    state.data.let {
+                        upcomingAdapter = MovieAdapter(requireActivity(), it!!.results)
+                        binding.upcomingRecyclerView.adapter = upcomingAdapter
+                        //upcomingAdapter.setList(it.results.shuffled())
                     }
                 }
                 is Resource.Error -> {
@@ -134,8 +135,8 @@ class HomeFragment : Fragment() {
             when(state) {
                 is Resource.Success -> {
                     hideProgressBar(2)
-                    state.data?.let {
-                        topRatedAdapter.setList(it.results.shuffled())
+                    state.data.let {
+                        topRatedAdapter.setList(it!!.results.shuffled())
                     }
                 }
                 is Resource.Error -> {
@@ -150,8 +151,8 @@ class HomeFragment : Fragment() {
             when(state) {
                 is Resource.Success -> {
                     hideProgressBar(0)
-                    state.data?.let {
-                        popularAdapter.setList(it.results.shuffled())
+                    state.data.let {
+                        popularAdapter.setList(it!!.results.shuffled())
                     }
                 }
                 is Resource.Error -> {

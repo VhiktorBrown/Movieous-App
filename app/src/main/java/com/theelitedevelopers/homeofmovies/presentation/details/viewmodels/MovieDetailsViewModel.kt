@@ -1,9 +1,11 @@
 package com.theelitedevelopers.homeofmovies.presentation.details.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.theelitedevelopers.homeofmovies.HomeOfMoviesApplication
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetCastsResponse
 import com.theelitedevelopers.homeofmovies.data.dtos.responses.GetMoviesResponse
 import com.theelitedevelopers.homeofmovies.domain.models.Movie
@@ -36,7 +38,7 @@ class MovieDetailsViewModel @Inject constructor(
         _movieRecommendationsLiveData.postValue(Resource.Loading())
         if (networkObserver.value == true) {
             try {
-                val recommendationsResponse = repository.fetchRecommendations(movieId)
+                val recommendationsResponse = repository.fetchRecommendations(movieId.toString())
                 if (recommendationsResponse.isSuccessful) {
                     recommendationsResponse.body()?.let {
                         _movieRecommendationsLiveData.postValue(Resource.Success(it))
@@ -59,7 +61,7 @@ class MovieDetailsViewModel @Inject constructor(
         _castsLiveData.postValue(Resource.Loading())
         if (networkObserver.value == true) {
             try {
-                val castsResponse = repository.fetchCasts(movieId)
+                val castsResponse = repository.fetchCasts(movieId.toString())
                 if (castsResponse.isSuccessful) {
                     castsResponse.body()?.let {
                         _castsLiveData.postValue(Resource.Success(it))
@@ -81,7 +83,7 @@ class MovieDetailsViewModel @Inject constructor(
         _movieDetailsLiveData.postValue(Resource.Loading())
         if (networkObserver.value == true) {
             try {
-                val movieDetailsResponse = repository.fetchMovieDetails(movieId)
+                val movieDetailsResponse = repository.fetchMovieDetails(movieId.toString())
                 if (movieDetailsResponse.isSuccessful) {
                     movieDetailsResponse.body()?.let {
                         _movieDetailsLiveData.postValue(Resource.Success(it))

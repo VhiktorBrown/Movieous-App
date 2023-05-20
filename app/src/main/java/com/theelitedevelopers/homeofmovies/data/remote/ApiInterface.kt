@@ -30,18 +30,18 @@ interface ApiInterface {
     //Fetch Recommendations for other movies based on a movie.
     @GET("movie/{movie_id}/recommendations?language=en-US&page=1")
     suspend fun fetchRecommendations(
-        @Path("{movie_id}") movieId: Int?
+        @Path("movie_id") movieId: String?
     ): Response<GetMoviesResponse>
 
     //Fetch Casts for a movie.
     @GET("movie/{movie_id}/credits?language=en-US")
     suspend fun fetchCasts(
-        @Path("{movie_id}") movieId: Int?
+        @Path("movie_id") movieId: String?
     ): Response<GetCastsResponse>
 
     //Fetch Movie Details
-    @GET("movie/{movie_id}/?language=en-US")
+    @GET("movie/{movie_id}?language=en-US")
     suspend fun fetchMovieDetails(
-        @Path("{movie_id}") movieId: Int?
+        @Path("movie_id") movieId: String?
     ): Response<Movie>
 }

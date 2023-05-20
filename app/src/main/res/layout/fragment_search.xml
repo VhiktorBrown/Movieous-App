@@ -3,13 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryDark"
     tools:context=".presentation.home.fragments.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <ImageView
+           android:id="@+id/back_image"
+           android:layout_width="@dimen/_30sdp"
+           android:layout_height="@dimen/_30sdp"
+           android:background="@drawable/custom_view"
+           android:src="@drawable/ic_back_arrow_ios"
+           android:padding="@dimen/_8sdp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_marginStart="@dimen/_15sdp"
+           android:layout_marginTop="@dimen/_15sdp"
+           android:contentDescription="@string/go_back"
+           app:tint="@color/textColor" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

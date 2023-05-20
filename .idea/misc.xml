@@ -7,9 +7,13 @@
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/dot_onboard_unactive_view.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/dot_onboard_view.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/edit_background.xml" value="0.22962962962962963" />
+        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/ic_rating.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/image_shadow.xml" value="0.22962962962962963" />
+        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/review_custom_view.xml" value="0.1203125" />
+        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/drawable/transparent_bg.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/activity_movie_details.xml" value="0.10326086956521739" />
+        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/activity_movie_details.xml" value="0.22" />
+        <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/cast_item.xml" value="0.16168478260869565" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/fragment_profile.xml" value="0.16168478260869565" />
         <entry key="..\:/Users/VICTOR/AndroidStudioProjects/HomeOfMovies/app/src/main/res/layout/fragment_search.xml" value="0.16168478260869565" />

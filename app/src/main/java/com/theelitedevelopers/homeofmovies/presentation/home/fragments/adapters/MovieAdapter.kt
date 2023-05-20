@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.theelitedevelopers.homeofmovies.R
 import com.theelitedevelopers.homeofmovies.databinding.MovieItemBinding
 import com.theelitedevelopers.homeofmovies.domain.models.Movie
+import com.theelitedevelopers.homeofmovies.presentation.details.MovieDetailsActivity
 import com.theelitedevelopers.homeofmovies.utils.Constants
 
 /**
@@ -44,9 +46,10 @@ class MovieAdapter(var context : Context, var movieList : List<Movie>?
             .into(holder.binding.movieImage)
 
         holder.binding.root.setOnClickListener {
-//            val intent = Intent(context, ProductDetailActivity::class.java)
-//                .putExtra(Constants.MOVIE_DETAIL, movieList[position])
-//            context.startActivity(intent)
+
+            val intent = Intent(context, MovieDetailsActivity::class.java)
+            intent.putExtra(Constants.MOVIE_ID, movieList!![position].id)
+            it.context.startActivity(intent)
         }
     }
 
